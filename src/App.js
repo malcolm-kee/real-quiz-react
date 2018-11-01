@@ -1,8 +1,11 @@
 import { Link, Router } from '@reach/router';
 import React from 'react';
+import { configureFirebase } from './common/configure-firebase';
 import './app.scss';
 import { Login } from './components/login';
 import { Appbar } from './components/appbar';
+
+configureFirebase();
 
 const Home = () => (
   <div>
