@@ -1,28 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Link, Router } from '@reach/router';
+import React from 'react';
+import './app.scss';
+import { Login } from './components/login';
+import { Appbar } from './components/appbar';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+const Home = () => (
+  <div>
+    <Appbar title="Real Quiz" />
+    home
+    <Link to="landing">landing</Link>
+  </div>
+);
+const Landing = () => (
+  <div>
+    <Appbar title="Real Quiz" />
+    landing
+    <button>Wohoo</button>
+  </div>
+);
+
+const App = () => {
+  return (
+    <Router>
+      <Home path="/" />
+      <Landing path="landing" />
+      <Login path="/login" />
+    </Router>
+  );
+};
 
 export default App;
