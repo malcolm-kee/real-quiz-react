@@ -1,3 +1,8 @@
+# Real Quiz React
+
+A real-time online quiz to be used for lecture/presentation.
+Implemented with React 16.7.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
