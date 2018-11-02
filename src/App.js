@@ -1,9 +1,9 @@
 import { Link, Router } from '@reach/router';
 import React from 'react';
-import { configureFirebase } from './common/configure-firebase';
 import './app.scss';
-import { Login } from './components/login';
+import { configureFirebase } from './common/configure-firebase';
 import { Appbar } from './components/appbar';
+import { AuthGuard, AuthProvider, useAuth, logout } from './auth';
 
 configureFirebase();
 
@@ -14,21 +14,30 @@ const Home = () => (
     <Link to="landing">landing</Link>
   </div>
 );
-const Landing = () => (
-  <div>
-    <Appbar title="Real Quiz" />
-    landing
-    <button>Wohoo</button>
-  </div>
-);
+
+const Landing = () => {
+  const user = useAuth();
+
+  return (
+    <AuthGuard>
+      <div>
+        <Appbar title="Real Quiz" />
+        <h1>landing</h1>
+        {user && user.displayName}
+        <button onClick={logout}>Logout</button>
+      </div>
+    </AuthGuard>
+  );
+};
 
 const App = () => {
   return (
-    <Router>
-      <Home path="/" />
-      <Landing path="landing" />
-      <Login path="/login" />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Home path="/" />
+        <Landing path="landing" />
+      </Router>
+    </AuthProvider>
   );
 };
 
