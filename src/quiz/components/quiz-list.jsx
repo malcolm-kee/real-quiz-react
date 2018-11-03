@@ -1,15 +1,27 @@
 import React from 'react';
-import { useQuizzes } from '../quiz-service';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle
+} from '../../components/card';
+import { List, ListItem } from '../../components/list';
 
-export const QuizList = () => {
-  const quizzes = useQuizzes();
-
+export const QuizList = ({ quizzes, onSelect }) => {
   return (
-    <div>
-      <h1>Quizzes</h1>
-      {quizzes.map(quiz => (
-        <div key={quiz.id}>{quiz.title}</div>
-      ))}
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Quizzes</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <List>
+          {quizzes.map(quiz => (
+            <ListItem onClick={() => onSelect(quiz)} isButton key={quiz.id}>
+              {quiz.title}
+            </ListItem>
+          ))}
+        </List>
+      </CardContent>
+    </Card>
   );
 };

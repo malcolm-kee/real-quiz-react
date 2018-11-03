@@ -1,0 +1,23 @@
+@import '../../common/variables';
+
+.input {
+  display: block;
+  border: 0;
+  margin: 0;
+  width: 100%;
+  padding: 6px 0 7px;
+  outline: none;
+  box-sizing: content-box;
+  border-bottom: 1px solid $grey-300;
+  font-size: $subheading-font-size;
+
+  &.is-focus {
+    padding: 6px 0;
+    border-bottom: 2px solid $primary-color-dark;
+  }
+
+  &[disabled] {
+    border-bottom: 1px dashed $grey-300;
+    background-color: $disabled-background;
+  }
+}

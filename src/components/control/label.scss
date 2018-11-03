@@ -1,0 +1,22 @@
+@import '../../common/variables';
+
+.label {
+  font-size: $subheading-font-size;
+  color: $caption-color;
+  position: absolute;
+  top: $spacing-unit * 1.5;
+  transition-duration: $transition-duration-standard;
+  transition-timing-function: $transition-ease-in-out;
+  transition-property: top, font-size;
+
+  &.is-fill {
+    top: 0;
+    font-size: $caption-font-size;
+  }
+
+  &.is-focus {
+    color: $primary-color-main;
+    top: 0;
+    font-size: $caption-font-size;
+  }
+}

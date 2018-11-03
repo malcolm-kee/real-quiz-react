@@ -1,0 +1,61 @@
+@import '../../common/variables';
+
+.card {
+  display: block;
+  position: relative;
+  padding: $spacing-unit * 2;
+  border-radius: $spacing-unit / 2;
+  box-shadow: $box-shadow-2;
+  background: #fff;
+  color: $body-color;
+
+  &--header {
+    display: flex;
+    flex-direction: row;
+    padding: 0 $spacing-unit * 2;
+  }
+
+  &--content {
+    display: block;
+    margin-bottom: $spacing-unit;
+  }
+
+  &--actions {
+    display: block;
+    margin-left: -$spacing-unit;
+    margin-right: -$spacing-unit;
+    padding: $spacing-unit 0;
+  }
+
+  &--title {
+    display: block;
+    font-weight: 500;
+    margin: 0;
+    font-size: $title-font-size;
+  }
+
+  &--header &--title {
+    margin-bottom: 1.5 * $spacing-unit;
+  }
+
+  & > :first-child {
+    margin-top: 0;
+  }
+
+  & > :last-child:not(.card--footer) {
+    margin-bottom: 0;
+  }
+
+  & > &--actions:last-child {
+    margin-bottom: -$spacing-unit;
+    padding-bottom: 0;
+  }
+
+  &--actions .button {
+    margin: 0 $spacing-unit;
+    &:first-child {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}

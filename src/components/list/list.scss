@@ -1,0 +1,31 @@
+@import '../../common/variables';
+
+.list {
+  padding-top: $spacing-unit;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+
+  &--item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    min-height: 48px;
+    width: 100%;
+    border: 0;
+    padding: 0 $spacing-unit * 2;
+    margin: 0;
+    text-align: left;
+    box-sizing: border-box;
+    &.is-button {
+      font: inherit;
+      color: inherit;
+      -webkit-appearance: none;
+      background: none;
+      cursor: pointer;
+      &:active {
+        background: $grey-200;
+      }
+    }
+  }
+}

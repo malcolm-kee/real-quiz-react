@@ -27,8 +27,7 @@ export const useQuizzes = () => {
  *
  * @param {IQuiz} quiz
  */
-export const addQuiz = quiz => {
-  const user = useAuthUser();
+export const addQuiz = (quiz, user) => {
   return getQuizCollection().add({
     createdByUid: user.uid,
     createdByName: user.displayName,

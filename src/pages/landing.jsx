@@ -1,7 +1,7 @@
 import React from 'react';
 import { AuthGuard } from '../auth';
 import { Appbar } from '../components/appbar';
-import { QuizList } from '../quiz';
+import { QuizPanel } from '../quiz';
 
 export const Landing = () => {
   return (
@@ -9,7 +9,7 @@ export const Landing = () => {
       <div>
         <Appbar title="Real Quiz" />
         <main className="main-content">
-          <QuizList />
+          <QuizPanel />
         </main>
       </div>
     </AuthGuard>
