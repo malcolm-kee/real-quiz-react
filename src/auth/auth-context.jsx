@@ -4,17 +4,52 @@ import firebase from 'firebase/app';
 const AuthContext = React.createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  useEffect(
-    () =>
-      firebase.auth().onAuthStateChanged(currentUser => setUser(currentUser)),
-    []
-  );
+  const [authState, setAuthState] = useState({
+    user: null,
+    isLoading: true
+  });
+  useEffect(() => {
+    const timeout = setTimeout(
+      () => setAuthState(authState => ({ ...authState, isLoading: false })),
+      1000
+    );
+    const unsub = firebase.auth().onAuthStateChanged(user => {
+      setAuthState(() => ({ user, ...(!!user ? { isLoading: false } : {}) }));
+      if (user) {
+        clearTimeout(timeout);
+      }
+    });
 
-  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
+    return () => {
+      unsub();
+      clearTimeout(timeout);
+    };
+  }, []);
+
+  return (
+    <AuthContext.Provider value={authState}>{children}</AuthContext.Provider>
+  );
 };
 
-export const useAuth = () => {
-  const user = useContext(AuthContext);
+/**
+ * @returns {firebase.User | null} the login firebase user
+ */
+export const useAuthUser = () => {
+  const { user } = useContext(AuthContext);
   return user;
+};
+
+/**
+ * @returns {boolean} the authentication is loading
+ */
+export const useAuthIsLoading = () => {
+  const { isLoading } = useContext(AuthContext);
+  return isLoading;
+};
+
+/**
+ * @returns {{user: firebase.User | null, isLoading: boolean}}
+ */
+export const useAuth = () => {
+  return useContext(AuthContext);
 };

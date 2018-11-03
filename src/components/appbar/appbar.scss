@@ -2,7 +2,7 @@
 
 .appbar {
   padding: 0 $spacing-unit;
-  background: $primary-color;
+  background: $primary-color-main;
   color: #fff;
   min-height: $toolbar-height;
   display: flex;
@@ -12,7 +12,29 @@
     min-height: $toolbar-height-large;
   }
 
+  &--title-container {
+    flex: 1;
+  }
+
   &--title {
+    font-size: $title-font-size;
+    padding: 0 $spacing-unit;
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  &--auth-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &--username {
     font-size: $subheading-font-size;
+    display: none;
+    @media screen and (min-width: $media-medium) {
+      display: inline;
+    }
   }
 }

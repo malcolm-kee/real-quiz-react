@@ -1,7 +1,9 @@
 import firebase from 'firebase/app';
 
-const googleProvider = new firebase.auth.GoogleAuthProvider();
 export const loginWithGoogle = () =>
-  firebase.auth().signInWithPopup(googleProvider);
+  firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+
+export const loginWithFacebook = () =>
+  firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider());
 
 export const logout = () => firebase.auth().signOut();

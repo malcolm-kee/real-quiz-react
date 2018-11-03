@@ -1,0 +1,66 @@
+@import '../../common/variables';
+
+.button {
+  display: inline-block;
+  padding: $spacing-unit $spacing-unit * 2;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: $body-font-size;
+  font-weight: 500;
+  box-sizing: border-box;
+  min-height: 36px;
+  cursor: pointer;
+  border-radius: 2px;
+  border: 0;
+  background: #fff;
+  color: $body-color;
+  transition: box-shadow $transition-duration-short $transition-ease-in-out;
+
+  &.raised {
+    box-shadow: $box-shadow-2;
+  }
+
+  &.icon {
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+  }
+
+  &.primary {
+    background: $primary-color-main;
+    color: $primary-color-contrast-text;
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &:focus {
+    outline: 0;
+    box-shadow: $box-shadow-6;
+  }
+
+  &:active {
+    box-shadow: $box-shadow-8;
+  }
+
+  &[disabled],
+  &:disabled {
+    box-shadow: $box-shadow-0;
+    background: $disabled-background;
+    color: $disabled-color;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.button-container {
+  padding: $spacing-unit;
+  &.left {
+    text-align: left;
+  }
+  &.right {
+    text-align: right;
+  }
+}

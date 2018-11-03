@@ -1,31 +1,11 @@
-.App {
-  text-align: center;
-}
+@import './common/variables';
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 100px;
-}
+.main-content {
+  padding: 0 $spacing-unit;
 
-.App-header {
-  background-color: #282c34;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  &.center {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
   }
 }

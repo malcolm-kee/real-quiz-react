@@ -1,0 +1,52 @@
+@import '../../common/variables';
+
+.loading-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  color: $primary-color-main;
+  animation: progress-color-switch 4.2s steps(3) infinite;
+  &--svg {
+    animation: progress-circular-rotate 1.4s linear infinite;
+  }
+  &--circle {
+    animation: progress-circular-dash 1.4s ease-in-out infinite;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-dasharray: 80px, 200px;
+    stroke-dashoffset: 0px;
+  }
+}
+
+@keyframes progress-circular-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes progress-color-switch {
+  0% {
+    color: $primary-color-main;
+  }
+  33.3333% {
+    color: #ff9100;
+  }
+  66.6667% {
+    color: #b2102f;
+  }
+}
+
+@keyframes progress-circular-dash {
+  0% {
+    stroke-dasharray: 1px, 200px;
+    stroke-dashoffset: 0px;
+  }
+  50% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -15px;
+  }
+  100% {
+    stroke-dasharray: 100px, 200px;
+    stroke-dashoffset: -120px;
+  }
+}
