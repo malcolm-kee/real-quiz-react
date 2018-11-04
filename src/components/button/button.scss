@@ -31,17 +31,32 @@
     color: $primary-color-contrast-text;
   }
 
+  &.secondary {
+    background: $secondary-color-main;
+    color: $secondary-color-contrast-text;
+  }
+
   &.full-width {
     width: 100%;
   }
 
   &:focus {
-    outline: 0;
-    box-shadow: $box-shadow-6;
+    outline: 2px solid $secondary-color-light;
+    box-shadow: $box-shadow-3;
+    &.secondary {
+      outline: 2px solid $primary-color-light;
+    }
   }
 
   &:active {
-    box-shadow: $box-shadow-8;
+    background: $grey-300;
+    box-shadow: $box-shadow-6;
+    &.primary {
+      background: $primary-color-dark;
+    }
+    &.secondary {
+      background: $secondary-color-dark;
+    }
   }
 
   &[disabled],

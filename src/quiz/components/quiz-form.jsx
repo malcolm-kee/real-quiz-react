@@ -65,7 +65,7 @@ export const QuizForm = ({ selectedQuiz, unselect }) => {
           </Field>
         </CardContent>
         <CardActions>
-          <Button type="submit" color="primary" disabled={isLoading}>
+          <Button type="submit" color="primary" disabled={isLoading} raised>
             Save
           </Button>
           <Button onClick={unselect} type="button" disabled={isLoading}>

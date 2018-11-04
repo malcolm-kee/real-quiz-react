@@ -19,8 +19,12 @@ code {
     monospace;
 }
 
-.grid-500 {
+.grid-300 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: $spacing-unit;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
 }

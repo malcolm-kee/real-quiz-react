@@ -8,7 +8,7 @@ export const QuizPanel = () => {
   const [selectedQuiz, selectQuiz] = useState();
 
   return (
-    <div className="grid-500">
+    <div className="grid-300">
       <QuizList quizzes={quizzes} onSelect={selectQuiz} />
       <QuizForm selectedQuiz={selectedQuiz} unselect={() => selectQuiz()} />
     </div>
