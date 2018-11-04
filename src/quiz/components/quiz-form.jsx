@@ -37,9 +37,7 @@ export const QuizForm = ({ selectedQuiz, unselect }) => {
   const submit = useCallback(
     ev => {
       ev.preventDefault();
-      callAjax().then(() => {
-        setQuiz(DEFAULT_QUIZ);
-      });
+      callAjax().then(() => setQuiz(DEFAULT_QUIZ));
     },
     [quiz]
   );
@@ -68,7 +66,11 @@ export const QuizForm = ({ selectedQuiz, unselect }) => {
           <Button type="submit" color="primary" disabled={isLoading} raised>
             Save
           </Button>
-          <Button onClick={unselect} type="button" disabled={isLoading}>
+          <Button
+            onClick={unselect}
+            type="button"
+            disabled={isLoading || quiz === DEFAULT_QUIZ}
+          >
             Cancel
           </Button>
         </CardActions>

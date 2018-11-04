@@ -11,10 +11,10 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const timeout = setTimeout(
       () => setAuthState(authState => ({ ...authState, isLoading: false })),
-      1000
+      2000
     );
     const unsub = firebase.auth().onAuthStateChanged(user => {
-      setAuthState(() => ({ user, ...(!!user ? { isLoading: false } : {}) }));
+      setAuthState({ user, ...(!!user ? { isLoading: false } : {}) });
       if (user) {
         clearTimeout(timeout);
       }

@@ -6,6 +6,7 @@ import { configureFirebase } from './common/configure-firebase';
 import { Home } from './pages/home';
 import { Landing } from './pages/landing';
 import { LoginPage } from './pages/login';
+import { QuizBuilder } from './pages/quiz-builder';
 
 configureFirebase();
 
@@ -15,6 +16,7 @@ const App = () => {
       <Router>
         <Home path="/" />
         <Landing path="landing" />
+        <QuizBuilder path="quiz-builder/:quizId" />
         <LoginPage path="login" />
       </Router>
     </AuthProvider>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../components/button';
+import { Button, LinkButton } from '../../components/button';
 import {
   Card,
   CardContent,
@@ -56,6 +56,11 @@ const QuizItem = ({ quiz, onClick }) => {
   return (
     <ListItem onClick={onClick} disabled={isLoading} isButton>
       <ListItemText primary={quiz.title} />
+      <ListItemSecondaryAction>
+        <LinkButton to={`/quiz-builder/${quiz.id}`} icon>
+          <MatIcon iconName="build" />
+        </LinkButton>
+      </ListItemSecondaryAction>
       <ListItemSecondaryAction>
         <Button onClick={callAjax} disabled={isLoading} icon>
           <MatIcon iconName="delete" />

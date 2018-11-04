@@ -1,3 +1,4 @@
+import { Link } from '@reach/router';
 import * as React from 'react';
 import { getClassName } from '../../lib/string-util';
 import './button.scss';
@@ -13,7 +14,6 @@ interface IButtonProps
   raised?: boolean;
 }
 export const Button = ({
-  ref,
   className,
   color,
   fullWidth,
@@ -22,6 +22,35 @@ export const Button = ({
   ...props
 }: IButtonProps) => (
   <button
+    className={getClassName(
+      'button',
+      className,
+      color,
+      fullWidth && 'full-width',
+      icon && 'icon',
+      raised && 'raised'
+    )}
+    {...props}
+  />
+);
+
+interface ILinkButtonProps {
+  to: string;
+  color?: 'primary' | 'secondary';
+  fullWidth?: boolean;
+  icon?: boolean;
+  raised?: boolean;
+  className?: string;
+}
+export const LinkButton: React.SFC<ILinkButtonProps> = ({
+  color,
+  fullWidth,
+  icon,
+  className,
+  raised,
+  ...props
+}) => (
+  <Link
     className={getClassName(
       'button',
       className,
