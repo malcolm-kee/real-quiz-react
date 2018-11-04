@@ -1,21 +1,26 @@
-import React, { useCallback, useState, useEffect, useRef } from 'react';
-import { addQuiz, updateQuiz } from '../quiz-service';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useAuthUser } from '../../auth';
+import { Button } from '../../components/button';
 import {
   Card,
-  CardHeader,
-  CardTitle,
+  CardActions,
   CardContent,
-  CardActions
+  CardHeader,
+  CardTitle
 } from '../../components/card';
-import { Button } from '../../components/button';
+import { useAjax } from '../../components/component-util';
 import { Field, Input, Label } from '../../components/control';
-import { useAuthUser } from '../../auth';
+import { addQuiz, updateQuiz } from '../quiz-service';
 
 export const QuizForm = ({ selectedQuiz, unselect }) => {
   const [quiz, setQuiz] = useState(DEFAULT_QUIZ);
-  const [isLoading, setIsLoading] = useState(false);
   const user = useAuthUser();
   const titleInput = useRef(null);
+  const { callAjax, isLoading } = useAjax(
+    quiz.id ? updateQuiz : addQuiz,
+    quiz,
+    user
+  );
 
   useEffect(
     () => {
@@ -31,15 +36,10 @@ export const QuizForm = ({ selectedQuiz, unselect }) => {
 
   const submit = useCallback(
     ev => {
-      setIsLoading(true);
       ev.preventDefault();
-      const ajax = quiz.id ? updateQuiz : addQuiz;
-      ajax(quiz, user)
-        .then(() => {
-          setQuiz(DEFAULT_QUIZ);
-          setIsLoading(false);
-        })
-        .catch(() => setIsLoading(false));
+      callAjax().then(() => {
+        setQuiz(DEFAULT_QUIZ);
+      });
     },
     [quiz]
   );

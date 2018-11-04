@@ -1,20 +1,22 @@
 import React from 'react';
+import { Button } from '../../components/button';
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle
 } from '../../components/card';
+import { MatIcon } from '../../components/icon';
 import {
   List,
   ListItem,
-  ListItemText,
-  ListItemSecondaryAction
+  ListItemSecondaryAction,
+  ListItemText
 } from '../../components/list';
+import { useAjax } from '../../components/component-util';
+import { removeQuiz } from '../quiz-service';
 // eslint-disable-next-line
 import { IQuiz } from '../quiz-type';
-import { Button } from '../../components/button';
-import { MatIcon } from '../../components/icon';
 
 /**
  *
@@ -31,20 +33,34 @@ export const QuizList = ({ quizzes, onSelect }) => {
       <CardContent>
         <List>
           {quizzes.map(quiz => (
-            <ListItem onClick={() => onSelect(quiz)} isButton key={quiz.id}>
-              <ListItemText
-                primary={quiz.title}
-                secondary={quiz.createdByName}
-              />
-              <ListItemSecondaryAction>
-                <Button icon>
-                  <MatIcon iconName="delete" />
-                </Button>
-              </ListItemSecondaryAction>
-            </ListItem>
+            <QuizItem
+              quiz={quiz}
+              onClick={() => onSelect(quiz)}
+              key={quiz.id}
+            />
           ))}
         </List>
       </CardContent>
     </Card>
+  );
+};
+
+/**
+ * @param {Object} props
+ * @param {IQuiz} props.quiz
+ * @param {() => void} props.onClick
+ */
+const QuizItem = ({ quiz, onClick }) => {
+  const { callAjax, isLoading } = useAjax(removeQuiz, quiz.id);
+
+  return (
+    <ListItem onClick={onClick} disabled={isLoading} isButton>
+      <ListItemText primary={quiz.title} />
+      <ListItemSecondaryAction>
+        <Button onClick={callAjax} disabled={isLoading} icon>
+          <MatIcon iconName="delete" />
+        </Button>
+      </ListItemSecondaryAction>
+    </ListItem>
   );
 };

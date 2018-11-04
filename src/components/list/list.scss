@@ -29,6 +29,11 @@
       &:active {
         background: $grey-200;
       }
+      &.disabled {
+        color: $disabled-color;
+        background: $disabled-background;
+        pointer-events: none;
+      }
     }
   }
 

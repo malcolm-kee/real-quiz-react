@@ -10,17 +10,24 @@ export const List: React.SFC = ({ children }) => (
 interface IListItemProps {
   className?: string;
   isButton?: boolean;
+  disabled?: boolean;
   onClick?: () => void;
 }
 export const ListItem: React.SFC<IListItemProps> = ({
   className,
   isButton,
   children,
+  disabled,
   ...props
 }) => {
   const allProps = [
     {
-      className: getClassName('list--item', className, isButton && 'is-button'),
+      className: getClassName(
+        'list--item',
+        className,
+        isButton && 'is-button',
+        disabled && 'disabled'
+      ),
       ...props
     }
   ].map(isButton ? getButtonProps : x => x)[0];

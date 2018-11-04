@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 // eslint-disable-next-line
 import { IQuiz } from './quiz-type';
 import { useAuthUser } from '../auth';
+import { getQuestions, removeQuestion } from '../question/question-service';
 
 /**
  * @returns {IQuiz[]} list of quizzes created by user
@@ -45,5 +46,19 @@ export const updateQuiz = quiz => {
     .doc(id)
     .update(data);
 };
+
+/**
+ * @param {string} quizId
+ */
+export const removeQuiz = quizId =>
+  getQuestions(quizId).then(questions =>
+    Promise.all(
+      [
+        getQuizCollection()
+          .doc(quizId)
+          .delete()
+      ].concat(questions.map(q => removeQuestion(quizId, q.id)))
+    )
+  );
 
 const getQuizCollection = () => firebase.firestore().collection('quizzes');

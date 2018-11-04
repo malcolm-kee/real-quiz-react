@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { noop, callAll } from '../lib/fn-util';
 
 /**
@@ -19,3 +20,32 @@ export const getButtonProps = ({
   ),
   ...props
 });
+
+/**
+ * Get the function to invoke ajax and track its loading state
+ * @param {(...any[]) => Promise<any>} ajax the ajax call to be invoked
+ * @param {...any} params the parameters to be applied to the ajax call
+ * @returns {{callAjax: () => Promise<any>, isLoading: boolean}}
+ */
+export const useAjax = (ajax, ...params) => {
+  const [isLoading, setLoading] = useState(false);
+
+  function callAjax() {
+    setLoading(true);
+    return ajax(...params)
+      .then(res => {
+        setLoading(false);
+        return res;
+      })
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+        throw err;
+      });
+  }
+
+  return {
+    callAjax,
+    isLoading
+  };
+};
