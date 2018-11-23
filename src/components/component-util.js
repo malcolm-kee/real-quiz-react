@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { noop, callAll } from '../lib/fn-util';
 
 /**
@@ -9,7 +9,7 @@ import { noop, callAll } from '../lib/fn-util';
 export const getButtonProps = ({
   tabIndex = 0,
   onClick = noop,
-  onKeyUp = noop,
+  onKeyUp,
   ...props
 }) => ({
   tabIndex,
@@ -30,19 +30,22 @@ export const getButtonProps = ({
 export const useAjax = (ajax, ...params) => {
   const [isLoading, setLoading] = useState(false);
 
-  function callAjax() {
-    setLoading(true);
-    return ajax(...params)
-      .then(res => {
-        setLoading(false);
-        return res;
-      })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-        throw err;
-      });
-  }
+  const callAjax = useCallback(
+    () => {
+      setLoading(true);
+      return ajax(...params)
+        .then(res => {
+          setLoading(false);
+          return res;
+        })
+        .catch(err => {
+          console.error(err);
+          setLoading(false);
+          throw err;
+        });
+    },
+    [ajax, ...params]
+  );
 
   return {
     callAjax,

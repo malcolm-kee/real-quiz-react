@@ -1,4 +1,4 @@
-import { is } from './is';
+import { isFunction } from './is';
 
 export function noop() {
   // noop
@@ -6,4 +6,4 @@ export function noop() {
 
 export const callAll = <Param>(...fns: Array<(p: Param) => void>) => (
   p: Param
-) => fns.filter(is.Function).forEach(fn => fn(p));
+) => fns.filter(isFunction).forEach(fn => fn(p));

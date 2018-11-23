@@ -1,16 +1,15 @@
-import { is } from './is';
+import { isFilledText } from './is';
 
 /**
- *
- * @param delimiter the delimiter to join the items
  * Utility to join string, the returned function will join the items with the provided delimiter
  * Only number and filled text will be included in the result
+ * @param delimiter the delimiter to join the items
  */
 export const joinString = (delimiter: string) => (
   ...items: Array<string | number | boolean | undefined | null>
 ) =>
   items
-    .filter(item => typeof item === 'number' || is.FilledText(item))
+    .filter(item => typeof item === 'number' || isFilledText(item))
     .join(delimiter);
 
 /**

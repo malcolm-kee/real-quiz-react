@@ -21,20 +21,20 @@ export const Field = ({ children }) => {
   );
 };
 
-export const useFieldControl = ({
-  onChange,
-  value,
-  id,
-  onChangeValue = noop,
-  className
-}) => {
+export const useFieldControl = (
+  { onChange, value, id, onChangeValue = noop, className, ...restProps },
+  baseClassName
+) => {
   const { isFocused, isFilled, dispatch } = useContext(FieldContext);
 
-  useEffect(() => {
-    if (id) {
-      dispatch(fieldActionCreators.setFieldId(id));
-    }
-  }, []);
+  useEffect(
+    () => {
+      if (id) {
+        dispatch(fieldActionCreators.setFieldId(id));
+      }
+    },
+    [id]
+  );
 
   useEffect(
     () => {
@@ -49,20 +49,19 @@ export const useFieldControl = ({
   );
 
   return {
-    getClassName: (...classes) =>
-      getClassName(
-        isFocused && 'is-focus',
-        isFilled && 'is-fill',
-        className,
-        ...classes
-      ),
-    controlProps: {
-      onChange: callAll(onChange, ev => {
-        const { value } = ev.target;
-        onChangeValue(value);
-      }),
-      onFocus: () => dispatch(fieldActionCreators.setIsFocus(true)),
-      onBlur: () => dispatch(fieldActionCreators.setIsFocus(false))
-    }
+    id,
+    onChange: callAll(onChange, ev => {
+      const { value } = ev.target;
+      onChangeValue(value);
+    }),
+    onFocus: () => dispatch(fieldActionCreators.setIsFocus(true)),
+    onBlur: () => dispatch(fieldActionCreators.setIsFocus(false)),
+    className: getClassName(
+      baseClassName,
+      isFocused && 'is-focus',
+      isFilled && 'is-fill',
+      className
+    ),
+    ...restProps
   };
 };
