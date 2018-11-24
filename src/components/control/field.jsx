@@ -50,6 +50,7 @@ export const useFieldControl = (
 
   return {
     id,
+    value,
     onChange: callAll(onChange, ev => {
       const { value } = ev.target;
       onChangeValue(value);
