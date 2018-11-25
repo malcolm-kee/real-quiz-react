@@ -5739,6 +5739,13 @@ joi@^11.1.1:
     isemail "3.x.x"
     topo "2.x.x"
 
+join-string@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/join-string/-/join-string-1.0.0.tgz#e3d2b4e6b0c0d3d274a33988925eb6d32016064c"
+  integrity sha512-08qfAOsBeZt7l42D5k5E6d0mXJpZQw2P2d13PDxm3qmENIs71y72MWkOFRiAET+YH1VXU6j7yh5//9YAxJMVzA==
+  dependencies:
+    typesafe-is "^1.0.1"
+
 js-base64@^2.1.8:
   version "2.4.9"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.9.tgz#748911fb04f48a60c4771b375cac45a80df11c03"
@@ -9694,6 +9701,16 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typesafe-is@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/typesafe-is/-/typesafe-is-0.0.3.tgz#8eba1ee89d1d433b4da2020542a1cf84490f2c9d"
+  integrity sha512-WWj+ZX3dfBvZK7otZkgzr1oi59oLebzMnAU7qomOEU4NOdodoDwi+ieUwXonGSd54ps1rMTqS24ffI3q0LcRWw==
+
+typesafe-is@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/typesafe-is/-/typesafe-is-1.0.1.tgz#eb86c4276eb27d0e9a99f4c7efd509175a3c2ef0"
+  integrity sha512-nDxlJeNidbMHAtZg5iWsEJzvLPfiljWxgoRwb0M6uE7FMHD8/blNLclILO3/n7rF8refTSeZ2Pm1e9edf4Detg==
 
 typescript@^3.1.6:
   version "3.1.6"

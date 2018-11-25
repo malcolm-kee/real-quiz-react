@@ -1,12 +1,12 @@
 import React from 'react';
-import { getClassName } from '../../lib/string-util';
+import { joinClassName } from 'join-string';
 import './icon.scss';
 
 interface IMatIconProps
   extends React.DetailedHTMLProps<
-      React.HTMLAttributes<HTMLElement>,
-      HTMLElement
-    > {
+    React.HTMLAttributes<HTMLElement>,
+    HTMLElement
+  > {
   iconName: string;
 }
 
@@ -15,7 +15,7 @@ export const MatIcon: React.SFC<IMatIconProps> = ({
   className,
   ...props
 }) => (
-  <i className={getClassName('material-icons', className)} {...props}>
+  <i className={joinClassName('material-icons', className)} {...props}>
     {iconName}
   </i>
 );

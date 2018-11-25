@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo, useReducer } from 'react';
 import { callAll, noop } from '../../lib/fn-util';
-import { getClassName } from '../../lib/string-util';
+import { joinClassName } from 'join-string';
 import {
   FieldContext,
   fieldReducer,
@@ -57,7 +57,7 @@ export const useFieldControl = (
     }),
     onFocus: () => dispatch(fieldActionCreators.setIsFocus(true)),
     onBlur: () => dispatch(fieldActionCreators.setIsFocus(false)),
-    className: getClassName(
+    className: joinClassName(
       baseClassName,
       isFocused && 'is-focus',
       isFilled && 'is-fill',

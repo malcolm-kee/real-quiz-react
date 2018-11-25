@@ -1,6 +1,6 @@
+import { joinClassName } from 'join-string';
 import React, { useContext } from 'react';
 import { FieldContext } from './field.parts';
-import { getClassName } from '../../lib/string-util';
 import './label.scss';
 
 export const Label = ({ className, htmlFor, children }) => {
@@ -8,7 +8,7 @@ export const Label = ({ className, htmlFor, children }) => {
 
   return (
     <label
-      className={getClassName(
+      className={joinClassName(
         'label',
         className,
         isFocused && 'is-focus',

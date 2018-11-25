@@ -1,6 +1,6 @@
 import { Link } from '@reach/router';
 import * as React from 'react';
-import { getClassName } from '../../lib/string-util';
+import { joinClassName } from 'join-string';
 import './button.scss';
 
 interface IButtonProps
@@ -22,7 +22,7 @@ export const Button = ({
   ...props
 }: IButtonProps) => (
   <button
-    className={getClassName(
+    className={joinClassName(
       'button',
       className,
       color,
@@ -51,7 +51,7 @@ export const LinkButton: React.SFC<ILinkButtonProps> = ({
   ...props
 }) => (
   <Link
-    className={getClassName(
+    className={joinClassName(
       'button',
       className,
       color,
@@ -76,7 +76,7 @@ export const ButtonContainer: React.SFC<IButtonContainerProps> = ({
   ...props
 }) => (
   <div
-    className={getClassName('button-container', className, align)}
+    className={joinClassName('button-container', className, align)}
     {...props}
   />
 );

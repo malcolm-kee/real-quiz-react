@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { getClassName } from '../../lib/string-util';
+import { joinClassName } from 'join-string';
 import './card.scss';
 
 interface ICardProps
   extends React.DetailedHTMLProps<
-      React.HTMLAttributes<HTMLDivElement>,
-      HTMLDivElement
-    > {}
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  > {}
 export const Card: React.SFC<ICardProps> = ({ className, ...props }) => (
-  <div className={getClassName('card', className)} {...props} />
+  <div className={joinClassName('card', className)} {...props} />
 );
 
 export const CardHeader: React.SFC = ({ children }) => (

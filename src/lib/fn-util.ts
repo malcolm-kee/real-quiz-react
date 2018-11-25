@@ -1,4 +1,4 @@
-import { isFunction } from './is';
+import { isFunction } from 'typesafe-is';
 
 export function noop() {
   // noop

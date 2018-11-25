@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getClassName } from '../../lib/string-util';
+import { joinClassName } from 'join-string';
 import { getButtonProps } from '../component-util';
 import './list.scss';
 
@@ -22,7 +22,7 @@ export const ListItem: React.SFC<IListItemProps> = ({
 }) => {
   const allProps = [
     {
-      className: getClassName(
+      className: joinClassName(
         'list--item',
         className,
         isButton && 'is-button',
@@ -45,7 +45,7 @@ export const ListItemText: React.SFC<IListItemTextProps> = ({
   secondary,
   className
 }) => (
-  <div className={getClassName('list--item-text', className)}>
+  <div className={joinClassName('list--item-text', className)}>
     {primary && <h1 className="list--item-text-primary">{primary}</h1>}
     {secondary && <h2 className="list--item-text-secondary">{secondary}</h2>}
   </div>
